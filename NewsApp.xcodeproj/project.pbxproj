@@ -13,6 +13,9 @@
 		A55F713528912F2C000775D2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A55F713328912F2C000775D2 /* Main.storyboard */; };
 		A55F713728912F2E000775D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A55F713628912F2E000775D2 /* Assets.xcassets */; };
 		A55F713A28912F2E000775D2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A55F713828912F2E000775D2 /* LaunchScreen.storyboard */; };
+		A55F7142289130D1000775D2 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55F7141289130D1000775D2 /* APICaller.swift */; };
+		A55F7144289136A9000775D2 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55F7143289136A9000775D2 /* NewsTableViewCell.swift */; };
+		A55F71462891379C000775D2 /* NewsTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55F71452891379C000775D2 /* NewsTableViewCellModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		A55F713628912F2E000775D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A55F713928912F2E000775D2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A55F713B28912F2E000775D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A55F7141289130D1000775D2 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
+		A55F7143289136A9000775D2 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
+		A55F71452891379C000775D2 /* NewsTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCellModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,9 @@
 				A55F713628912F2E000775D2 /* Assets.xcassets */,
 				A55F713828912F2E000775D2 /* LaunchScreen.storyboard */,
 				A55F713B28912F2E000775D2 /* Info.plist */,
+				A55F7141289130D1000775D2 /* APICaller.swift */,
+				A55F7143289136A9000775D2 /* NewsTableViewCell.swift */,
+				A55F71452891379C000775D2 /* NewsTableViewCellModel.swift */,
 			);
 			path = NewsApp;
 			sourceTree = "<group>";
@@ -140,7 +149,10 @@
 			files = (
 				A55F713228912F2C000775D2 /* ViewController.swift in Sources */,
 				A55F712E28912F2C000775D2 /* AppDelegate.swift in Sources */,
+				A55F7144289136A9000775D2 /* NewsTableViewCell.swift in Sources */,
 				A55F713028912F2C000775D2 /* SceneDelegate.swift in Sources */,
+				A55F71462891379C000775D2 /* NewsTableViewCellModel.swift in Sources */,
+				A55F7142289130D1000775D2 /* APICaller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
