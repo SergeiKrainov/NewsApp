@@ -25,6 +25,8 @@ class ViewController: UIViewController {
         return table
     }()
     
+    private let searchVc = UISearchController(searchResultsController: nil)
+    
     private var articles = [Article]()
     private var viewModels = [NewsTableViewCellModel]()
     
@@ -37,11 +39,17 @@ class ViewController: UIViewController {
         tableView.dataSource = self
         
         fetchTopStories()
+        createSearchBar()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
+    }
+    
+    private func createSearchBar() {
+        navigationItem.searchController = searchVc
+        searchVc.searchBar.delegate = self
     }
     
     private func fetchTopStories() {
@@ -65,6 +73,8 @@ class ViewController: UIViewController {
         })
     }
 }
+
+// Table
 
 extension ViewController: UITableViewDelegate,UITableViewDataSource {
  
@@ -93,5 +103,38 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
+    }
+}
+
+// Search
+
+extension ViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text, !text.isEmpty else {
+            return
+        }
+        APICaller.shared.search(with: text, completion: { [weak self] result in
+            switch result {
+            case .success(let articles):
+                self?.articles = articles
+                self?.viewModels = articles.compactMap({
+                    NewsTableViewCellModel(
+                        title: $0.title,
+                        subTitle: $0.description ?? "No Description",
+                        imageUrl: URL(string: $0.urlToImage ?? "")
+                    )
+                })
+                
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                    self?.searchVc.dismiss(animated: true)
+                }
+                
+            case .failure(let error):
+                print(error)
+            }
+        })
+        print(text)
     }
 }

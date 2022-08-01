@@ -13,12 +13,41 @@ final class APICaller {
     
     struct Constants {
         static let topHeadlinesUrl = URL(string: "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=62196eeb5d874e95b114b00fe45db024")
+        static let searchUrlString = "https://newsapi.org/v2/everything?sortBy=popularity&apiKey=62196eeb5d874e95b114b00fe45db024&q="
     }
     
     private init() {}
     
-    func getTopStories(completion: @escaping (Result<[Article], Error>) -> Void) {
+    public func getTopStories(completion: @escaping (Result<[Article], Error>) -> Void) {
         guard let url = Constants.topHeadlinesUrl else { return }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+            if let error = error {
+                completion(.failure(error))
+            }
+            if let data = data {
+                
+                do {
+                    let result = try JSONDecoder().decode(APIResponce.self, from: data)
+                    
+                    print("Articles: \(result.articles.count)")
+                    completion(.success(result.articles))
+                }
+                catch {
+                    completion(.failure(error))
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    public func search(with query: String, completion: @escaping (Result<[Article], Error>) -> Void) {
+        guard !query.trimmingCharacters(in: .whitespaces).isEmpty else {
+            return
+        }
+        let urlString = Constants.searchUrlString + query
+        
+        guard let url = URL(string: urlString) else { return }
         
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
             if let error = error {
